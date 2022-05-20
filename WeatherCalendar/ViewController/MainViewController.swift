@@ -18,6 +18,10 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view.
         calendar.dataSource = self
         calendar.delegate = self
+        guard let todoTableVC = children.first as? TodoTableViewController else {
+            return
+        }
+        todoTableVC.delegate = self
         
         initAppearance(with: calendar.appearance)
         initHourlyWeatherView()
@@ -26,25 +30,35 @@ class MainViewController: UIViewController {
         calendar.locale = Locale(identifier: "ko_KR")
 //        calendar.locale = Locale(identifier: "en_EN")
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            let nc = segue.destination as? UINavigationController,
+            let addTodoItemVC = nc.topViewController as? AddTodoItemViewController
+        else { return }
+        addTodoItemVC.delegate = self
+        addTodoItemVC.selectedDate = calendar.selectedDate
+    }
+    
     // MARK: - Private Method
+    
     private func initAppearance(with ca: FSCalendarAppearance) {
         ca.headerTitleColor = .red
         ca.weekdayTextColor = .red
         
         ca.eventSelectionColor = .green
-        ca.eventDefaultColor = .yellow
+        ca.eventDefaultColor = .magenta
         
         ca.selectionColor = .brown
         ca.todayColor = .blue
         
         ca.todaySelectionColor = .red
         
-        ca.headerDateFormat = "M월"
+        ca.headerDateFormat = ""
         
         ca.headerMinimumDissolvedAlpha = 0.0
         
-        ca.borderRadius = 0
+//        ca.borderRadius = 0
     }
     
     private func initHourlyWeatherView() {
@@ -68,19 +82,8 @@ class MainViewController: UIViewController {
     }
 }
 
-// MARK: - Navigation
-extension MainViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard
-            let nc = segue.destination as? UINavigationController,
-            let addTodoItemVC = nc.topViewController as? AddTodoItemViewController
-        else { return }
-        addTodoItemVC.delegate = self
-        addTodoItemVC.selectedDate = calendar.selectedDate
-    }
-}
+// MARK: - FSCalendar DataSource & Delegate
 
-// MARK: - DataSource & Delegate
 extension MainViewController: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let todoTableVC = children.first as? TodoTableViewController else {
@@ -88,17 +91,36 @@ extension MainViewController: FSCalendarDataSource, FSCalendarDelegate {
         }
         todoTableVC.setTodoList(accordingTo: date)
     }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let todo = Todo.fetchAll()
+        let formattedDate = CustomDateFormatter.forTodo().string(from: date)
+        return todo[formattedDate]?.count ?? 0 > 0 ? 1 : 0
+    }
 }
 
 // MARK: - Delegate로 Data 전달
+
 extension MainViewController: SendDateDelegate {
     func send(date: Date) {
-        self.calendar(self.calendar, didSelect: date, at: .current)
+        calendar.reloadData()
+        calendar(self.calendar, didSelect: date, at: .current)
+        scrollToBottom()
+    }
+    
+    private func scrollToBottom() {
         guard let todoTableVC = children.first as? TodoTableViewController else {
             return
         }
         let numOfRows = todoTableVC.todoTable.numberOfRows(inSection: 0)
         let indexPath = IndexPath(row: numOfRows - 1, section: 0)
         todoTableVC.todoTable.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+}
+
+// MARK: -
+extension MainViewController: ActionRequestDelegate {
+    func updateCalendar() {
+        calendar.reloadData()
     }
 }
