@@ -11,74 +11,66 @@ import SnapKit
 
 class MainViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
-    @IBOutlet weak var hourlyWeatherView: UIStackView!
+    @IBOutlet weak var hourlyWeatherView: HourlyWeatherView!
+    @IBOutlet weak var pullDownMenuButton: UIBarButtonItem!
+    
+    weak var todoTableDelegate: TodoTableDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         calendar.dataSource = self
         calendar.delegate = self
-        guard let todoTableVC = children.first as? TodoTableViewController else {
-            return
-        }
-        todoTableVC.delegate = self
         
-        initAppearance(with: calendar.appearance)
-        initHourlyWeatherView()
+        setupCalendarAppearance()
+        setupPullDownMenuButton()
+        setupBackBarButtonItem()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        // weekday 한/영 설정
-        calendar.locale = Locale(identifier: "ko_KR")
-//        calendar.locale = Locale(identifier: "en_EN")
+        hourlyWeatherView.setupHourlyWeatherView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard
-            let nc = segue.destination as? UINavigationController,
-            let addTodoItemVC = nc.topViewController as? AddTodoItemViewController
-        else { return }
-        addTodoItemVC.delegate = self
-        addTodoItemVC.selectedDate = calendar.selectedDate
-    }
-    
-    // MARK: - Private Method
-    
-    private func initAppearance(with ca: FSCalendarAppearance) {
-        ca.headerTitleColor = .red
-        ca.weekdayTextColor = .red
+        guard let segueId = segue.identifier else { return }
         
-        ca.eventSelectionColor = .green
-        ca.eventDefaultColor = .magenta
-        
-        ca.selectionColor = .brown
-        ca.todayColor = .blue
-        
-        ca.todaySelectionColor = .red
-        
-        ca.headerDateFormat = ""
-        
-        ca.headerMinimumDissolvedAlpha = 0.0
-        
-//        ca.borderRadius = 0
-    }
-    
-    private func initHourlyWeatherView() {
-        let subViewCount = 10
-        Task {
-            guard let hourlyInfo = try? await WeatherInfo.of(Location.Asia.Seoul, .hourly)?.hourly else {
-                return
-            }
-            for view in hourlyWeatherView.arrangedSubviews {
-                hourlyWeatherView.removeArrangedSubview(view)
-            }
-            let startIndex = hourlyInfo.startIndex
-            for i in startIndex..<startIndex + subViewCount {
-                let subView = HourlyWeatherSubView.of(dt: Double(hourlyInfo[i].dt), temp: hourlyInfo[i].temp, iconId: hourlyInfo[i].weather[0].icon)
-                hourlyWeatherView.addArrangedSubview(subView)
-                subView.snp.makeConstraints {
-                    $0.width.equalTo(60)
-                }
-            }
+        switch segueId {
+        case "AddTodoSegue":
+            let nc = segue.destination as? UINavigationController
+            let vc = nc?.topViewController as? AddTodoItemViewController
+            vc?.calendarDelegate = self
+            vc?.selectedDate = calendar.selectedDate
+        default:
+            debugPrint("해당 segueId 에 대한 처리가 없습니다.")
+            return
         }
+    }
+    
+    func setupCalendarAppearance() {
+        calendar.appearance.weekdayTextColor = .black
+        calendar.locale = Locale(identifier: "ko_KR")
+        
+        calendar.appearance.eventSelectionColor = .red
+        calendar.appearance.eventDefaultColor = .black
+        
+        calendar.appearance.selectionColor = .blue
+        calendar.appearance.todayColor = .brown
+    }
+    
+    func setupPullDownMenuButton() {
+        let settings = UIAction(title: "설정", image: UIImage(systemName: "gearshape.fill")) { _ in
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") else { return }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        pullDownMenuButton.menu = UIMenu(children: [settings])
+    }
+    
+    func setupBackBarButtonItem() {
+        let backBarButtonItem = UIBarButtonItem(title: "back", style: .plain, target: self, action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
     }
 }
 
@@ -86,41 +78,27 @@ class MainViewController: UIViewController {
 
 extension MainViewController: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        guard let todoTableVC = children.first as? TodoTableViewController else {
-            return
-        }
-        todoTableVC.setTodoList(accordingTo: date)
+        todoTableDelegate?.loadTodoList(selected: date)
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let todo = Todo.fetchAll()
-        let formattedDate = CustomDateFormatter.forTodo().string(from: date)
+        let todo = TodoService().fetchAll()
+        let formattedDate = TodoDateFormatter().string(from: date)
         return todo[formattedDate]?.count ?? 0 > 0 ? 1 : 0
     }
 }
 
-// MARK: - Delegate로 Data 전달
+// MARK: - CalendarDelegate 구현
 
-extension MainViewController: SendDateDelegate {
-    func send(date: Date) {
+extension MainViewController: CalendarDelegate {
+    func updateEventDot() {
         calendar.reloadData()
-        calendar(self.calendar, didSelect: date, at: .current)
-        scrollToBottom()
     }
     
-    private func scrollToBottom() {
-        guard let todoTableVC = children.first as? TodoTableViewController else {
-            return
-        }
-        let numOfRows = todoTableVC.todoTable.numberOfRows(inSection: 0)
-        let indexPath = IndexPath(row: numOfRows - 1, section: 0)
-        todoTableVC.todoTable.scrollToRow(at: indexPath, at: .bottom, animated: true)
-    }
-}
-
-// MARK: -
-extension MainViewController: ActionRequestDelegate {
-    func updateCalendar() {
-        calendar.reloadData()
+    func showTodoList(date: Date) {
+        calendar.reloadData() // Event Dot 을 위해 reload
+        calendar(self.calendar, didSelect: date, at: .current) // 해당 날짜 선택 이벤트
+        calendar.select(date) // 해당 날짜로 포커스 이동
+        todoTableDelegate?.scrollToBottom() // 제일 아래로 스크롤
     }
 }

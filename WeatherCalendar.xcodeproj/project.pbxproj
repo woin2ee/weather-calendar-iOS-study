@@ -8,9 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		78BB208475E68E58E8175D95 /* Pods_WeatherCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4F553F0F66D2FDFC99A569 /* Pods_WeatherCalendar.framework */; };
+		E83432D328445C660007D23A /* SettingsTableViewSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83432D228445C660007D23A /* SettingsTableViewSwitchCell.swift */; };
 		E848244E282E216400A180E3 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848244D282E216400A180E3 /* TodoTableViewController.swift */; };
 		E8482452282E442B00A180E3 /* Todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8482450282E442B00A180E3 /* Todo.xcdatamodeld */; };
-		E86E1761282984C400D327B7 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E1760282984C400D327B7 /* WeatherInfo.swift */; };
+		E849A8EC283E6A00001BAA36 /* TodoDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E849A8EB283E6A00001BAA36 /* TodoDateFormatter.swift */; };
+		E849A8EE283E6A28001BAA36 /* HourlyWeatherDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E849A8ED283E6A28001BAA36 /* HourlyWeatherDateFormatter.swift */; };
+		E849A8F3283E74F8001BAA36 /* OpenWeatherMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E849A8F2283E74F8001BAA36 /* OpenWeatherMapService.swift */; };
+		E849A8F5283E9213001BAA36 /* WeatherServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E849A8F4283E9212001BAA36 /* WeatherServiceProtocol.swift */; };
+		E849A8F7283E92D9001BAA36 /* APIRequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E849A8F6283E92D9001BAA36 /* APIRequestError.swift */; };
+		E85B1066283F44C100C859F4 /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B1065283F44C100C859F4 /* CalendarDelegate.swift */; };
+		E85B1068283F4F6C00C859F4 /* TodoTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B1067283F4F6C00C859F4 /* TodoTableDelegate.swift */; };
+		E86E1761282984C400D327B7 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E1760282984C400D327B7 /* WeatherData.swift */; };
+		E87157C528411D0C007D1507 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87157C428411D0C007D1507 /* TodoItem.swift */; };
+		E87157C728412032007D1507 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87157C628412032007D1507 /* TodoList.swift */; };
+		E87157D428412A37007D1507 /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87157D328412A37007D1507 /* CoreDataServiceProtocol.swift */; };
+		E87157DB28414C4F007D1507 /* TodoTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87157DA28414C4F007D1507 /* TodoTableViewControllerTests.swift */; };
+		E87157DD28414C63007D1507 /* StubTodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87157DC28414C63007D1507 /* StubTodoTableViewController.swift */; };
 		E8981EA128328C510000E5F0 /* AddTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8981EA028328C510000E5F0 /* AddTodoItemViewController.swift */; };
 		E89E85CF28042BD100DDAB0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E85CE28042BD100DDAB0C /* AppDelegate.swift */; };
 		E89E85D128042BD100DDAB0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89E85D028042BD100DDAB0C /* SceneDelegate.swift */; };
@@ -18,19 +31,44 @@
 		E89E85D628042BD100DDAB0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E85D428042BD100DDAB0C /* Main.storyboard */; };
 		E89E85D828042BD200DDAB0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E89E85D728042BD200DDAB0C /* Assets.xcassets */; };
 		E89E85DB28042BD300DDAB0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E89E85D928042BD300DDAB0C /* LaunchScreen.storyboard */; };
-		E8DB2840282CC23200D98141 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB283F282CC23200D98141 /* Todo.swift */; };
-		E8DB2842282CC99B00D98141 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB2841282CC99B00D98141 /* CustomDateFormatter.swift */; };
+		E8A27C5C2842326B00057B85 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A27C5B2842326B00057B85 /* SettingsViewController.swift */; };
+		E8A27C5E284281F600057B85 /* HourlyWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A27C5D284281F600057B85 /* HourlyWeatherView.swift */; };
+		E8BE9A41283880B700B187A0 /* AddTodoItemViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE9A40283880B700B187A0 /* AddTodoItemViewControllerTests.swift */; };
+		E8DB2840282CC23200D98141 /* TodoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DB283F282CC23200D98141 /* TodoService.swift */; };
 		E8DD19A6282BFD8D00D5FC78 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DD19A5282BFD8D00D5FC78 /* Storage.swift */; };
 		E8FEDA50282C0A090051E8B0 /* HourlyWeatherSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FEDA4F282C0A090051E8B0 /* HourlyWeatherSubView.swift */; };
 		E8FEDA52282C0EA90051E8B0 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FEDA51282C0EA90051E8B0 /* Location.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E8BE9A42283880B700B187A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E89E85C328042BD100DDAB0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E89E85CA28042BD100DDAB0C;
+			remoteInfo = WeatherCalendar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0E69427662F97E0EF4FA598B /* Pods-WeatherCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherCalendar.debug.xcconfig"; path = "Target Support Files/Pods-WeatherCalendar/Pods-WeatherCalendar.debug.xcconfig"; sourceTree = "<group>"; };
 		A14227019291EADF1371BC69 /* Pods-WeatherCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherCalendar.release.xcconfig"; path = "Target Support Files/Pods-WeatherCalendar/Pods-WeatherCalendar.release.xcconfig"; sourceTree = "<group>"; };
+		E83432D228445C660007D23A /* SettingsTableViewSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewSwitchCell.swift; sourceTree = "<group>"; };
 		E848244D282E216400A180E3 /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		E8482451282E442B00A180E3 /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
-		E86E1760282984C400D327B7 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
+		E849A8EB283E6A00001BAA36 /* TodoDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDateFormatter.swift; sourceTree = "<group>"; };
+		E849A8ED283E6A28001BAA36 /* HourlyWeatherDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherDateFormatter.swift; sourceTree = "<group>"; };
+		E849A8F2283E74F8001BAA36 /* OpenWeatherMapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapService.swift; sourceTree = "<group>"; };
+		E849A8F4283E9212001BAA36 /* WeatherServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceProtocol.swift; sourceTree = "<group>"; };
+		E849A8F6283E92D9001BAA36 /* APIRequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestError.swift; sourceTree = "<group>"; };
+		E85B1065283F44C100C859F4 /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
+		E85B1067283F4F6C00C859F4 /* TodoTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableDelegate.swift; sourceTree = "<group>"; };
+		E86E1760282984C400D327B7 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		E87157C428411D0C007D1507 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		E87157C628412032007D1507 /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		E87157D328412A37007D1507 /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
+		E87157DA28414C4F007D1507 /* TodoTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewControllerTests.swift; sourceTree = "<group>"; };
+		E87157DC28414C63007D1507 /* StubTodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubTodoTableViewController.swift; sourceTree = "<group>"; };
 		E8981EA028328C510000E5F0 /* AddTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewController.swift; sourceTree = "<group>"; };
 		E89E85CB28042BD100DDAB0C /* WeatherCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89E85CE28042BD100DDAB0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,8 +78,11 @@
 		E89E85D728042BD200DDAB0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E89E85DA28042BD300DDAB0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E89E85DC28042BD300DDAB0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E8DB283F282CC23200D98141 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
-		E8DB2841282CC99B00D98141 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
+		E8A27C5B2842326B00057B85 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E8A27C5D284281F600057B85 /* HourlyWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherView.swift; sourceTree = "<group>"; };
+		E8BE9A3E283880B700B187A0 /* WeatherCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8BE9A40283880B700B187A0 /* AddTodoItemViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoItemViewControllerTests.swift; sourceTree = "<group>"; };
+		E8DB283F282CC23200D98141 /* TodoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoService.swift; sourceTree = "<group>"; };
 		E8DD19A5282BFD8D00D5FC78 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		E8FEDA4F282C0A090051E8B0 /* HourlyWeatherSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherSubView.swift; sourceTree = "<group>"; };
 		E8FEDA51282C0EA90051E8B0 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -54,6 +95,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				78BB208475E68E58E8175D95 /* Pods_WeatherCalendar.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8BE9A3B283880B700B187A0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,28 +125,112 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E8039454282D7C2800B9C310 /* CustomView */ = {
+		E8039454282D7C2800B9C310 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E83432D4284466D60007D23A /* HourlyWeatherView */,
+				E83432D128445C3C0007D23A /* TableViewCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E83432D128445C3C0007D23A /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E83432D228445C660007D23A /* SettingsTableViewSwitchCell.swift */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		E83432D4284466D60007D23A /* HourlyWeatherView */ = {
 			isa = PBXGroup;
 			children = (
 				E8FEDA4F282C0A090051E8B0 /* HourlyWeatherSubView.swift */,
+				E8A27C5D284281F600057B85 /* HourlyWeatherView.swift */,
 			);
-			path = CustomView;
+			path = HourlyWeatherView;
 			sourceTree = "<group>";
 		};
 		E848244F282E2A5300A180E3 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E85B1064283F44AE00C859F4 /* DelegateProtocol */,
 				E89E85D228042BD100DDAB0C /* MainViewController.swift */,
 				E848244D282E216400A180E3 /* TodoTableViewController.swift */,
 				E8981EA028328C510000E5F0 /* AddTodoItemViewController.swift */,
+				E8A27C5B2842326B00057B85 /* SettingsViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E849A8EA283E69B6001BAA36 /* DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				E849A8ED283E6A28001BAA36 /* HourlyWeatherDateFormatter.swift */,
+				E849A8EB283E6A00001BAA36 /* TodoDateFormatter.swift */,
+			);
+			path = DateFormatter;
+			sourceTree = "<group>";
+		};
+		E849A8EF283E6E25001BAA36 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				E849A8F4283E9212001BAA36 /* WeatherServiceProtocol.swift */,
+				E849A8F2283E74F8001BAA36 /* OpenWeatherMapService.swift */,
+				E849A8F8283E9428001BAA36 /* Model */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		E849A8F8283E9428001BAA36 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E86E1760282984C400D327B7 /* WeatherData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E849A8F9283E9445001BAA36 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				E8DB283F282CC23200D98141 /* TodoService.swift */,
+				E87157C328411BFD007D1507 /* Model */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		E85B1064283F44AE00C859F4 /* DelegateProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				E85B1065283F44C100C859F4 /* CalendarDelegate.swift */,
+				E85B1067283F4F6C00C859F4 /* TodoTableDelegate.swift */,
+			);
+			path = DelegateProtocol;
+			sourceTree = "<group>";
+		};
+		E87157C328411BFD007D1507 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E87157C428411D0C007D1507 /* TodoItem.swift */,
+				E87157C628412032007D1507 /* TodoList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E87157DE284152FF007D1507 /* TodoTableViewControllerTest */ = {
+			isa = PBXGroup;
+			children = (
+				E87157DA28414C4F007D1507 /* TodoTableViewControllerTests.swift */,
+				E87157DC28414C63007D1507 /* StubTodoTableViewController.swift */,
+			);
+			path = TodoTableViewControllerTest;
 			sourceTree = "<group>";
 		};
 		E89E85C228042BD100DDAB0C = {
 			isa = PBXGroup;
 			children = (
 				E89E85CD28042BD100DDAB0C /* WeatherCalendar */,
+				E8BE9A3F283880B700B187A0 /* WeatherCalendarTests */,
 				E89E85CC28042BD100DDAB0C /* Products */,
 				4B88D1E571BD3532BE5847D3 /* Pods */,
 				2DA918760CC8C08895FDD11B /* Frameworks */,
@@ -109,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				E89E85CB28042BD100DDAB0C /* WeatherCalendar.app */,
+				E8BE9A3E283880B700B187A0 /* WeatherCalendarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,16 +252,25 @@
 				E89E85CE28042BD100DDAB0C /* AppDelegate.swift */,
 				E89E85D028042BD100DDAB0C /* SceneDelegate.swift */,
 				E848244F282E2A5300A180E3 /* ViewController */,
-				E8DB2841282CC99B00D98141 /* CustomDateFormatter.swift */,
-				E8039454282D7C2800B9C310 /* CustomView */,
+				E8039454282D7C2800B9C310 /* View */,
+				E849A8EA283E69B6001BAA36 /* DateFormatter */,
 				E8DB283E282CB86D00D98141 /* Literal */,
-				E8DD19A4282BEF7C00D5FC78 /* Model */,
+				E8DD19A4282BEF7C00D5FC78 /* Service */,
 				E89E85D428042BD100DDAB0C /* Main.storyboard */,
 				E89E85D728042BD200DDAB0C /* Assets.xcassets */,
 				E89E85D928042BD300DDAB0C /* LaunchScreen.storyboard */,
 				E89E85DC28042BD300DDAB0C /* Info.plist */,
 			);
 			path = WeatherCalendar;
+			sourceTree = "<group>";
+		};
+		E8BE9A3F283880B700B187A0 /* WeatherCalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				E8BE9A40283880B700B187A0 /* AddTodoItemViewControllerTests.swift */,
+				E87157DE284152FF007D1507 /* TodoTableViewControllerTest */,
+			);
+			path = WeatherCalendarTests;
 			sourceTree = "<group>";
 		};
 		E8DB283E282CB86D00D98141 /* Literal */ = {
@@ -140,14 +282,16 @@
 			path = Literal;
 			sourceTree = "<group>";
 		};
-		E8DD19A4282BEF7C00D5FC78 /* Model */ = {
+		E8DD19A4282BEF7C00D5FC78 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				E86E1760282984C400D327B7 /* WeatherInfo.swift */,
-				E8DB283F282CC23200D98141 /* Todo.swift */,
+				E849A8F6283E92D9001BAA36 /* APIRequestError.swift */,
+				E87157D328412A37007D1507 /* CoreDataServiceProtocol.swift */,
+				E849A8EF283E6E25001BAA36 /* Weather */,
+				E849A8F9283E9445001BAA36 /* Todo */,
 				E8482450282E442B00A180E3 /* Todo.xcdatamodeld */,
 			);
-			path = Model;
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +316,24 @@
 			productReference = E89E85CB28042BD100DDAB0C /* WeatherCalendar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E8BE9A3D283880B700B187A0 /* WeatherCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8BE9A46283880B700B187A0 /* Build configuration list for PBXNativeTarget "WeatherCalendarTests" */;
+			buildPhases = (
+				E8BE9A3A283880B700B187A0 /* Sources */,
+				E8BE9A3B283880B700B187A0 /* Frameworks */,
+				E8BE9A3C283880B700B187A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8BE9A43283880B700B187A0 /* PBXTargetDependency */,
+			);
+			name = WeatherCalendarTests;
+			productName = WeatherCalendarTests;
+			productReference = E8BE9A3E283880B700B187A0 /* WeatherCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +346,10 @@
 				TargetAttributes = {
 					E89E85CA28042BD100DDAB0C = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					E8BE9A3D283880B700B187A0 = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = E89E85CA28042BD100DDAB0C;
 					};
 				};
 			};
@@ -201,6 +367,7 @@
 			projectRoot = "";
 			targets = (
 				E89E85CA28042BD100DDAB0C /* WeatherCalendar */,
+				E8BE9A3D283880B700B187A0 /* WeatherCalendarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -213,6 +380,13 @@
 				E89E85DB28042BD300DDAB0C /* LaunchScreen.storyboard in Resources */,
 				E89E85D828042BD200DDAB0C /* Assets.xcassets in Resources */,
 				E89E85D628042BD100DDAB0C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8BE9A3C283880B700B187A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,20 +441,50 @@
 			files = (
 				E89E85D328042BD100DDAB0C /* MainViewController.swift in Sources */,
 				E848244E282E216400A180E3 /* TodoTableViewController.swift in Sources */,
-				E8DB2840282CC23200D98141 /* Todo.swift in Sources */,
+				E83432D328445C660007D23A /* SettingsTableViewSwitchCell.swift in Sources */,
+				E87157C528411D0C007D1507 /* TodoItem.swift in Sources */,
+				E849A8EE283E6A28001BAA36 /* HourlyWeatherDateFormatter.swift in Sources */,
+				E849A8F5283E9213001BAA36 /* WeatherServiceProtocol.swift in Sources */,
+				E8DB2840282CC23200D98141 /* TodoService.swift in Sources */,
 				E8FEDA52282C0EA90051E8B0 /* Location.swift in Sources */,
+				E87157D428412A37007D1507 /* CoreDataServiceProtocol.swift in Sources */,
 				E89E85CF28042BD100DDAB0C /* AppDelegate.swift in Sources */,
-				E8DB2842282CC99B00D98141 /* CustomDateFormatter.swift in Sources */,
+				E849A8F3283E74F8001BAA36 /* OpenWeatherMapService.swift in Sources */,
 				E8FEDA50282C0A090051E8B0 /* HourlyWeatherSubView.swift in Sources */,
+				E85B1066283F44C100C859F4 /* CalendarDelegate.swift in Sources */,
 				E8482452282E442B00A180E3 /* Todo.xcdatamodeld in Sources */,
+				E8A27C5C2842326B00057B85 /* SettingsViewController.swift in Sources */,
 				E89E85D128042BD100DDAB0C /* SceneDelegate.swift in Sources */,
-				E86E1761282984C400D327B7 /* WeatherInfo.swift in Sources */,
+				E849A8EC283E6A00001BAA36 /* TodoDateFormatter.swift in Sources */,
+				E85B1068283F4F6C00C859F4 /* TodoTableDelegate.swift in Sources */,
+				E87157C728412032007D1507 /* TodoList.swift in Sources */,
+				E86E1761282984C400D327B7 /* WeatherData.swift in Sources */,
+				E849A8F7283E92D9001BAA36 /* APIRequestError.swift in Sources */,
 				E8DD19A6282BFD8D00D5FC78 /* Storage.swift in Sources */,
 				E8981EA128328C510000E5F0 /* AddTodoItemViewController.swift in Sources */,
+				E8A27C5E284281F600057B85 /* HourlyWeatherView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8BE9A3A283880B700B187A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E87157DD28414C63007D1507 /* StubTodoTableViewController.swift in Sources */,
+				E8BE9A41283880B700B187A0 /* AddTodoItemViewControllerTests.swift in Sources */,
+				E87157DB28414C4F007D1507 /* TodoTableViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8BE9A43283880B700B187A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E89E85CA28042BD100DDAB0C /* WeatherCalendar */;
+			targetProxy = E8BE9A42283880B700B187A0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E89E85D428042BD100DDAB0C /* Main.storyboard */ = {
@@ -478,6 +682,44 @@
 			};
 			name = Release;
 		};
+		E8BE9A44283880B700B187A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2AVC8X7323;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MacMorning.WeatherCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherCalendar.app/WeatherCalendar";
+			};
+			name = Debug;
+		};
+		E8BE9A45283880B700B187A0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2AVC8X7323;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = MacMorning.WeatherCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeatherCalendar.app/WeatherCalendar";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -495,6 +737,15 @@
 			buildConfigurations = (
 				E89E85E028042BD300DDAB0C /* Debug */,
 				E89E85E128042BD300DDAB0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8BE9A46283880B700B187A0 /* Build configuration list for PBXNativeTarget "WeatherCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8BE9A44283880B700B187A0 /* Debug */,
+				E8BE9A45283880B700B187A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
