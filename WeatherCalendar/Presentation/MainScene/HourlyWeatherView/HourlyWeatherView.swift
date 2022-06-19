@@ -10,35 +10,49 @@ import UIKit
 class HourlyWeatherView: UIStackView {
     let weatherService: WeatherService
     
-    let hourlyWeatherCount = 10
+    let displayingCount = 20
+    var currentTime: String?
     
     required init(coder: NSCoder) {
         weatherService = OpenWeatherMapService(location: Location.seoul.coordinates)
         super.init(coder: coder)
     }
     
-    func setupHourlyWeatherView() {
+    func updateView() {
+        guard needToUpdate() else { return }
+        
         removeFullyAllArrangedSubviews()
-        weatherService.fetchWeatherData {
-            [self] (result: Result<WeatherData, APIRequestError>) in
+        weatherService.fetchHourlyWeatherData {
+            [self] (result: Result<[Hourly], APIRequestError>) in
             switch result {
             case .success(let data):
-                drawHourlyWeatherView(by: data.hourly)
+                setSubViews(by: data)
             case .failure(let error):
                 debugPrint(error.localizedDescription)
             }
         }
     }
     
-    func drawHourlyWeatherView(by data: [Hourly]) {
-        for i in 0..<hourlyWeatherCount {
+    func needToUpdate() -> Bool {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd HH"
+        
+        if currentTime == formatter.string(from: Date()) {
+            return false
+        } else {
+            currentTime = formatter.string(from: Date())
+            return true
+        }
+    }
+    
+    func setSubViews(by data: [Hourly]) {
+        for i in 0..<displayingCount {
             DispatchQueue.main.async {
                 let subView = HourlyWeatherSubView.of(
-                    dt: Double(data[i].dt),
-                    temp: data[i].temp,
-                    iconId: data[i].weather[0].icon
+                    date: data[i].date,
+                    kelvin: data[i].kelvin,
+                    iconImg: data[i].iconImg
                 )
-                
                 self.addArrangedSubview(subView)
                 
                 subView.snp.makeConstraints {

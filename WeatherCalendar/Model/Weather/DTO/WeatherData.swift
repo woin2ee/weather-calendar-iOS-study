@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct WeatherData: Codable {
     let lat: Double
@@ -25,8 +26,23 @@ struct Current: Codable {
 
 struct Hourly: Codable {
     let dt: Int
-    let temp: Double
+    let kelvin: Double
     let weather: [Weather]
+    
+    private enum CodingKeys: String, CodingKey {
+        case dt
+        case kelvin = "temp"
+        case weather
+    }
+    
+    var date: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: Date(timeIntervalSince1970: Double(dt)))
+    }
+    var iconImg: UIImage? {
+        return UIImage(named: weather.first?.icon ?? "")
+    }
 }
 
 struct Daily: Codable {
